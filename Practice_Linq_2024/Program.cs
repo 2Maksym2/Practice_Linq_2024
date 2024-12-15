@@ -46,11 +46,15 @@ namespace Practice_Linq_2024
         {
             //Query 1: Вивести всі матчі, які відбулися в Україні у 2012 році.
 
-            var selectedGames = games; // Корегуємо запит !!!
+            var selectedGames = games.Where(t => t.Date.Year == 2012 && t.Country == "Ukraine"); // Корегуємо запит !!!
 
 
             // Перевірка
             Console.WriteLine("\n======================== QUERY 1 ========================");
+            foreach (var item in selectedGames)
+            {
+                Console.WriteLine($"{item.Date.ToShortDateString()} {item.Home_team} - {item.Away_team}, Score: {item.Home_score} - {item.Away_score}, Country: {item.Country}");
+            }
 
             // див. приклад як має бути виведено:
 
