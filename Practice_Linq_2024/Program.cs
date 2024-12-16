@@ -143,12 +143,15 @@ namespace Practice_Linq_2024
             //Query 6: Вивести всі матчі останнього чемпіоната світу з футболу (FIFA World Cup), починаючи з чвертьфіналів (тобто останні 8 матчів).
             //Матчі мають відображатися від фіналу до чвертьфіналів (тобто у зворотній послідовності).
 
-            var selectedGames = games;   // Корегуємо запит !!!
-
+            var selectedGames = games.Where(t => t.Tournament == "FIFA World Cup").OrderByDescending(g => g.Date).Take(8);   // Корегуємо запит !!!
+            var revGames = selectedGames.Reverse();
 
             // Перевірка
             Console.WriteLine("\n======================== QUERY 6 ========================");
-
+            foreach (var item in selectedGames)
+            {
+                Console.WriteLine($"{item.Date.ToShortDateString()} {item.Home_team} - {item.Away_team}, Score: {item.Home_score} - {item.Away_score}, Country: {item.Country}");
+            }
             // див. приклад як має бути виведено:
 
 
