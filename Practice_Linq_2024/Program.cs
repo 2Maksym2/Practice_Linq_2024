@@ -162,7 +162,7 @@ namespace Practice_Linq_2024
         {
             //Query 7: Вивести перший матч у 2023 році, в якому збірна України виграла.
 
-            FootballGame g = games.FirstOrDefault(t => t.Date.Year == 2023 && ((t.Away_team == "Ukraine" && t.Away_score > t.Home_score) || (t.Home_team == "Ukraine" && t.Home_score > t.Away_score)));   // Корегуємо запит !!!
+            FootballGame g = games.First(t => t.Date.Year == 2023 && ((t.Away_team == "Ukraine" && t.Away_score > t.Home_score) || (t.Home_team == "Ukraine" && t.Home_score > t.Away_score)));   // Корегуємо запит !!!
 
 
             // Перевірка
@@ -221,11 +221,14 @@ namespace Practice_Linq_2024
         {
             //Query 10: Вивести з 5-го по 10-тий (включно) матчі Gold Cup, які відбулися у липні 2023 р.
 
-            var selectedGames = games;    // Корегуємо запит !!!
+            var selectedGames = games.Where(t => t.Tournament == "Gold Cup" && t.Date.Year == 2023 && t.Date.Month == 7).Skip(4).Take(6);    // Корегуємо запит !!!
 
             // Перевірка
             Console.WriteLine("\n======================== QUERY 10 ========================");
-
+            foreach (var item in selectedGames)
+            {
+                Console.WriteLine($"{item.Date.ToShortDateString()} {item.Home_team} - {item.Away_team}, Score: {item.Home_score} - {item.Away_score}, Country: {item.Country}");
+            }
             // див. приклад як має бути виведено:
 
 
